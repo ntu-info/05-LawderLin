@@ -35,7 +35,7 @@ def create_app():
     def show_img():
         return send_file("amygdala.gif", mimetype="image/gif")
 
-    @app.get("/disassociate/terms/<term1>/<term2>", endpoint="terms_studies")
+    @app.get("/dissociate/terms/<term1>/<term2>", endpoint="terms_studies")
     def get_studies_by_term(term1, term2):
         eng = get_engine()
         payload = {"ok": False, "dialect": eng.dialect.name}
@@ -66,7 +66,7 @@ def create_app():
             payload["error"] = str(e)
             return jsonify(payload), 500
 
-    @app.get("/disassociate/locations/<coords1>/<coords2>", endpoint="locations_studies")
+    @app.get("/dissociate/locations/<coords1>/<coords2>", endpoint="locations_studies")
     def get_studies_by_coordinates(coords1, coords2):
         # Coords1 is the coord that we want to keep
         x1, y1, z1 = map(int, coords1.split("_"))
