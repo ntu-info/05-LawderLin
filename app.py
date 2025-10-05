@@ -23,6 +23,7 @@ def get_engine():
     )
     return _engine
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -34,17 +35,73 @@ def create_app():
     def show_img():
         return send_file("amygdala.gif", mimetype="image/gif")
 
-    @app.get("/terms/<term>/studies", endpoint="terms_studies")
-    def get_studies_by_term(term):
-        return term
+    @app.get("/disassociate/terms/<term1>/<term2>", endpoint="terms_studies")
+    def get_studies_by_term(term1, term2):
+        eng = get_engine()
+        payload = {"ok": False, "dialect": eng.dialect.name}
 
-    @app.get("/locations/<coords>/studies", endpoint="locations_studies")
-    def get_studies_by_coordinates(coords):
-        x, y, z = map(int, coords.split("_"))
-        return jsonify([x, y, z])
+        try:
+            with eng.begin() as conn:
+                # Ensure we are in the correct schema
+                conn.execute(text("SET search_path TO ns, public;"))
+                payload["version"] = conn.exec_driver_sql("SELECT version()").scalar()
+
+                # Counts
+                payload["annotations_terms_count"] = conn.execute(text("SELECT COUNT(*) FROM ns.annotations_terms")).scalar()
+
+                try:
+                    # Term1 is the term that we want to keep, term2 is the term that we want to filter out
+                    rows = conn.execute(text(
+                        "SELECT study_id, contrast_id, term, weight FROM ns.annotations_terms WHERE term = :term1 AND term != :term2 LIMIT 50"
+                    ).bindparams(term1=term1, term2=term2
+                    )).mappings().all()
+                    payload["annotations_terms_studies"] = [dict(r) for r in rows]
+                except Exception:
+                    payload["annotations_terms_studies"] = []
+
+            payload["ok"] = True
+            return jsonify(payload), 200
+
+        except Exception as e:
+            payload["error"] = str(e)
+            return jsonify(payload), 500
+
+    @app.get("/disassociate/locations/<coords1>/<coords2>", endpoint="locations_studies")
+    def get_studies_by_coordinates(coords1, coords2):
+        # Coords1 is the coord that we want to keep
+        x1, y1, z1 = map(int, coords1.split("_"))
+
+        # Coords2 is the coord that we wnat to filtered out
+        x2, y2, z2 = map(int, coords2.split("_"))
+
+        eng = get_engine()
+        payload = {"ok": False, "dialect": eng.dialect.name}
+
+        try:
+            with eng.begin() as conn:
+                # Ensure we are in the correct schema
+                conn.execute(text("SET search_path TO ns, public;"))
+                payload["version"] = conn.exec_driver_sql("SELECT version()").scalar()
+
+                # Counts
+                payload["coordinates_count"] = conn.execute(text("SELECT COUNT(*) FROM ns.coordinates")).scalar()
+
+                try:
+                    rows = conn.execute(text(
+                        "SELECT study_id, ST_X(geom) AS x, ST_Y(geom) AS y, ST_Z(geom) AS z FROM ns.coordinates WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 AND NOT (ST_X(geom) = :x2 AND ST_Y(geom) = :y2 AND ST_Z(geom) = :z2) LIMIT 50"
+                    )).bindparams(x1=x1, y1=y1, z1=z1, x2=x2, y2=y2, z2=z2).mappings().all()
+                    payload["coordinates_studies"] = [dict(r) for r in rows]
+                except Exception:
+                    payload["coordinates_studies"] = []
+
+            payload["ok"] = True
+            return jsonify(payload), 200
+
+        except Exception as e:
+            payload["error"] = str(e)
+            return jsonify(payload), 500
 
     @app.get("/test_db", endpoint="test_db")
-    
     def test_db():
         eng = get_engine()
         payload = {"ok": False, "dialect": eng.dialect.name}
@@ -77,6 +134,7 @@ def create_app():
                     payload["metadata_sample"] = []
 
                 try:
+
                     rows = conn.execute(text(
                         "SELECT study_id, contrast_id, term, weight FROM ns.annotations_terms LIMIT 3"
                     )).mappings().all()
