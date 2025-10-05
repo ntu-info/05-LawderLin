@@ -51,27 +51,44 @@ def create_app():
         return send_file("amygdala.gif", mimetype="image/gif")
 
     @app.get("/dissociate/terms/<term1>/<term2>", endpoint="terms_studies")
-    def get_studies_by_term(term1, term2):
+    def get_studies_by_term(term1, term2 = None):
         """
         Get studies associated with term1 but not with term2.
+
+        Term2 can be optional. If term2 not provided, just return studies associated with term1.
 
         Term format in parquet: "terms_abstract_tfidf__<term>"
         <term> is separated by whitespaces, e.g. "anterior cingulate", "ventromedial prefrontal"
         """
 
         term1 = "terms_abstract_tfidf__" + term1.replace("_", " ")
-        term2 = "terms_abstract_tfidf__" + term2.replace("_", " ")
+        term2 = "terms_abstract_tfidf__" + term2.replace("_", " ") if term2 else None
 
         eng = get_engine()
         payload = {"ok": False, "dialect": eng.dialect.name}
 
+        if term2:
 
-        query = text(
-            "SELECT study_id, contrast_id, term, weight "
-            "FROM ns.annotations_terms "
-            "WHERE term = :term1 AND term != :term2 "
-            "LIMIT 50"
-        ).bindparams(term1=term1, term2=term2)
+            query = text(
+                "WITH excluded_studies AS ("
+                "    SELECT study_id "
+                "    FROM ns.annotations_terms "
+                "    WHERE term = :term2"
+                ") "
+                "SELECT study_id, contrast_id, term, weight "
+                "FROM ns.annotations_terms "
+                "WHERE term = :term1 "
+                "AND study_id NOT IN (SELECT study_id FROM excluded_studies) "
+                "LIMIT 50"
+            ).bindparams(term1=term1, term2=term2)
+        else:
+            # When term2 is not provided
+            query = text(
+                "SELECT study_id, contrast_id, term, weight "
+                "FROM ns.annotations_terms "
+                "WHERE term = :term1 "
+                "LIMIT 50"
+            ).bindparams(term1=term1, term2=term2)
 
         try:
             with eng.begin() as conn:
@@ -98,29 +115,47 @@ def create_app():
             return jsonify(payload), 500
 
     @app.get("/dissociate/locations/<coords1>/<coords2>", endpoint="locations_studies")
-    def get_studies_by_coordinates(coords1, coords2):
+    def get_studies_by_coordinates(coords1, coords2 = None):
 
         """
         Get studies associated with coordinates1 but not with coordinates2.
+
+        Coordinates2 can be optional. If coord2 not provided, just return studies associated with coordinates1.
 
         coordinates format: "x_y_z", e.g. "36_-58_52"
         """
 
         try:
             x1, y1, z1 = validate_coords(coords1)
-            x2, y2, z2 = validate_coords(coords2)
+            # coords2 can be optional
+            x2, y2, z2 = validate_coords(coords2) if coords2 else (None, None, None)
         except ValueError as e:
             return jsonify({"ok": False, "error": str(e)}), 400
 
         eng = get_engine()
         payload = {"ok": False, "dialect": eng.dialect.name}
 
-        query = text(
-            "SELECT study_id, ST_X(geom) AS x, ST_Y(geom) AS y, ST_Z(geom) AS z " \
-            "FROM ns.coordinates " \
-            "WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 AND NOT (ST_X(geom) = :x2 AND ST_Y(geom) = :y2 AND ST_Z(geom) = :z2) " \
-            "LIMIT 50"
-        ).bindparams(x1=x1, y1=y1, z1=z1, x2=x2, y2=y2, z2=z2)
+        # Making the query conditional on whether coords2 is provided
+        if coords2:
+            query = text(
+                "WITH excluded_studies AS ("
+                "    SELECT study_id "
+                "    FROM ns.coordinates "
+                "    WHERE ST_X(geom) = :x2 AND ST_Y(geom) = :y2 AND ST_Z(geom) = :z2"
+                ") "
+                "SELECT study_id, ST_X(geom) AS x, ST_Y(geom) AS y, ST_Z(geom) AS z "
+                "FROM ns.coordinates "
+                "WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 "
+                "AND study_id NOT IN (SELECT study_id FROM excluded_studies) "
+                "LIMIT 50"
+            ).bindparams(x1=x1, y1=y1, z1=z1, x2=x2, y2=y2, z2=z2)
+        else:
+            query = text(
+                "SELECT study_id, ST_X(geom) AS x, ST_Y(geom) AS y, ST_Z(geom) AS z "
+                "FROM ns.coordinates "
+                "WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 "
+                "LIMIT 50"
+            ).bindparams(x1=x1, y1=y1, z1=z1)
 
         try:
             with eng.begin() as conn:
