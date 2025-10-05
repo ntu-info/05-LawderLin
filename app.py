@@ -91,7 +91,7 @@ def create_app():
                 "WHERE term = :term1 "
                 "ORDER BY weight DESC "
                 "LIMIT 10"
-            ).bindparams(term1=term1, term2=term2)
+            ).bindparams(term1=term1)
 
         try:
             with eng.begin() as conn:
