@@ -50,6 +50,7 @@ def create_app():
         """ Smoke test to show an image """
         return send_file("amygdala.gif", mimetype="image/gif")
 
+    @app.get("/dissociate/terms/<term1>/", endpoint="terms_studies")
     @app.get("/dissociate/terms/<term1>/<term2>", endpoint="terms_studies")
     def get_studies_by_term(term1, term2 = None):
         """
@@ -79,7 +80,8 @@ def create_app():
                 "FROM ns.annotations_terms "
                 "WHERE term = :term1 "
                 "AND study_id NOT IN (SELECT study_id FROM excluded_studies) "
-                "LIMIT 50"
+                "ORDER BY weight DESC "
+                "LIMIT 10"
             ).bindparams(term1=term1, term2=term2)
         else:
             # When term2 is not provided
@@ -87,7 +89,8 @@ def create_app():
                 "SELECT study_id, contrast_id, term, weight "
                 "FROM ns.annotations_terms "
                 "WHERE term = :term1 "
-                "LIMIT 50"
+                "ORDER BY weight DESC "
+                "LIMIT 10"
             ).bindparams(term1=term1, term2=term2)
 
         try:
@@ -114,6 +117,7 @@ def create_app():
             payload["error"] = str(e)
             return jsonify(payload), 500
 
+    @app.get("/dissociate/locations/<coords1>/", endpoint="locations_studies")
     @app.get("/dissociate/locations/<coords1>/<coords2>", endpoint="locations_studies")
     def get_studies_by_coordinates(coords1, coords2 = None):
 
@@ -147,14 +151,14 @@ def create_app():
                 "FROM ns.coordinates "
                 "WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 "
                 "AND study_id NOT IN (SELECT study_id FROM excluded_studies) "
-                "LIMIT 50"
+                "LIMIT 10"
             ).bindparams(x1=x1, y1=y1, z1=z1, x2=x2, y2=y2, z2=z2)
         else:
             query = text(
                 "SELECT study_id, ST_X(geom) AS x, ST_Y(geom) AS y, ST_Z(geom) AS z "
                 "FROM ns.coordinates "
                 "WHERE ST_X(geom) = :x1 AND ST_Y(geom) = :y1 AND ST_Z(geom) = :z1 "
-                "LIMIT 50"
+                "LIMIT 10"
             ).bindparams(x1=x1, y1=y1, z1=z1)
 
         try:
