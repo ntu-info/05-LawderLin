@@ -1,0 +1,80 @@
+{
+  "annotations_terms_count": 1049299,
+  "annotations_terms_sample": [
+    {
+      "contrast_id": "1",
+      "study_id": "11595392",
+      "term": "terms_abstract_tfidf__001",
+      "weight": 0.0938757052249
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "12077009",
+      "term": "terms_abstract_tfidf__001",
+      "weight": 0.0689931709903
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "12725761",
+      "term": "terms_abstract_tfidf__001",
+      "weight": 0.0996940021344
+    }
+  ],
+  "coordinates_count": 507891,
+  "coordinates_sample": [
+    {
+      "study_id": "10022492",
+      "x": 36.0,
+      "y": -58.0,
+      "z": 52.0
+    },
+    {
+      "study_id": "10022492",
+      "x": 48.0,
+      "y": 24.0,
+      "z": 20.0
+    },
+    {
+      "study_id": "10022492",
+      "x": -42.0,
+      "y": 26.0,
+      "z": 20.0
+    }
+  ],
+  "dialect": "postgresql",
+  "metadata_count": 14371,
+  "metadata_sample": [
+    {
+      "authors": "Callicott JH, Mattay VS, Bertolino A, Finn K, Coppola R, Frank JA, Goldberg TE, Weinberger DR",
+      "contrast_id": "1",
+      "fts": "'-1':2 '1':4 '10022492':1,3 '1991':26 'bertolino':9 'callicott':5 'capac':30 'cerebr':21 'characterist':28 'constraint':31 'coppola':13 'cortex':22 'dr':20 'finn':11 'frank':15 'function':38 'goldberg':17 'ja':16 'jh':6 'k':12 'mattay':7 'memori':34 'mri':39 'n.y':25 'new':23 'physiolog':27 'r':14 'reveal':36 'te':18 'vs':8 'weinberg':19 'work':33 'york':24",
+      "id": "10022492-1",
+      "journal": "Cerebral cortex (New York, N.Y. : 1991)",
+      "study_id": "10022492",
+      "title": "Physiological characteristics of capacity constraints in working memory as revealed by functional MRI.",
+      "year": 1999.0
+    },
+    {
+      "authors": "Toni I, Schluter ND, Josephs O, Friston K, Passingham RE",
+      "contrast_id": "1",
+      "fts": "'-1':2 '1':4 '10022494':1,3 '1991':20 'activ':27 'brain':31 'cerebr':15 'cortex':16 'event':34 'event-rel':33 'fmri':36 'friston':11 'human':30 'joseph':9 'k':12 'movement':25 'movement-rel':24 'n.y':19 'nd':8 'new':17 'o':10 'passingham':13 're':14 'relat':26,35 'schluter':7 'set':22 'signal':21 'studi':37 'toni':5 'york':18",
+      "id": "10022494-1",
+      "journal": "Cerebral cortex (New York, N.Y. : 1991)",
+      "study_id": "10022494",
+      "title": "Signal-, set- and movement-related activity in the human brain: an event-related  fMRI study.",
+      "year": 1999.0
+    },
+    {
+      "authors": "Lockwood AH, Salvi RJ, Coad ML, Arnold SA, Wack DS, Murphy BW, Burkard RF",
+      "contrast_id": "1",
+      "fts": "'-1':2 '0.5':36 '1':4 '10022496':1,3 '1991':24 '4.0':38 'ah':6 'anatomi':27 'arnold':11 'auditori':32 'burkard':17 'bw':16 'cerebr':19 'coad':9 'cortex':20 'ds':14 'function':26 'human':31 'intens':43 'khz':39 'lockwood':5 'ml':10 'murphi':15 'n.y':23 'new':21 'normal':30 'respons':34 'rf':18 'rj':8 'sa':12 'salvi':7 'system':33 'tone':40 'vari':42 'wack':13 'york':22",
+      "id": "10022496-1",
+      "journal": "Cerebral cortex (New York, N.Y. : 1991)",
+      "study_id": "10022496",
+      "title": "The functional anatomy of the normal human auditory system: responses to 0.5 and  4.0 kHz tones at varied intensities.",
+      "year": 1999.0
+    }
+  ],
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}

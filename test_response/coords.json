@@ -1,0 +1,82 @@
+[
+{
+  "coordinates_count": 507891,
+  "coordinates_studies": [
+    {
+      "study_id": "24027520",
+      "x": 0.0,
+      "y": -52.0,
+      "z": 26.0
+    },
+    {
+      "study_id": "26197092",
+      "x": 0.0,
+      "y": -52.0,
+      "z": 26.0
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+,
+{
+  "coordinates_count": 507891,
+  "coordinates_studies": [
+    {
+      "study_id": "24027520",
+      "x": 0.0,
+      "y": -52.0,
+      "z": 26.0
+    },
+    {
+      "study_id": "26197092",
+      "x": 0.0,
+      "y": -52.0,
+      "z": 26.0
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+,
+{
+  "coordinates_count": 507891,
+  "coordinates_studies": [
+    {
+      "study_id": "17611124",
+      "x": -2.0,
+      "y": 50.0,
+      "z": -6.0
+    },
+    {
+      "study_id": "17950623",
+      "x": -2.0,
+      "y": 50.0,
+      "z": -6.0
+    },
+    {
+      "study_id": "19199412",
+      "x": -2.0,
+      "y": 50.0,
+      "z": -6.0
+    },
+    {
+      "study_id": "27601666",
+      "x": -2.0,
+      "y": 50.0,
+      "z": -6.0
+    },
+    {
+      "study_id": "28602963",
+      "x": -2.0,
+      "y": 50.0,
+      "z": -6.0
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+]

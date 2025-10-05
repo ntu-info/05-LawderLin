@@ -1,0 +1,208 @@
+[
+{
+  "annotations_terms_count": 1049299,
+  "annotations_terms_studies": [
+    {
+      "contrast_id": "1",
+      "study_id": "21151992",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.376284256556
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "17636560",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.313927811012
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "26318342",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.300248281399
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "22431294",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.295433936962
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "18550759",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.244901768743
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "12135971",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.208662317351
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "19409498",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.196000894801
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "18574518",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.187411511043
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "23124385",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.185800749837
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "21368086",
+      "term": "terms_abstract_tfidf__posterior cingulate",
+      "weight": 0.181456585177
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+,
+{
+  "annotations_terms_count": 1049299,
+  "annotations_terms_studies": [
+    {
+      "contrast_id": "1",
+      "study_id": "16038681",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.282208348287
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "16126415",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.276872306708
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "15795134",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.272224786617
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "15050549",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.220835003947
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "14568463",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.220091595877
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "15184037",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.21591406813
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "23954317",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.208622496399
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "15885517",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.203737028779
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "16055352",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.198485297615
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "17889565",
+      "term": "terms_abstract_tfidf__anterior cingulate",
+      "weight": 0.19844874078
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+,
+{
+  "annotations_terms_count": 1049299,
+  "annotations_terms_studies": [
+    {
+      "contrast_id": "1",
+      "study_id": "20008375",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.276416459487
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "17950625",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.251432264401
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "20307505",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.25121536321
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "26249369",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.246318603985
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "25928647",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.24244461218
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "18550593",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.229696027099
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "21325514",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.196563655028
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "29218570",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.193859869514
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "18937281",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.185985402936
+    },
+    {
+      "contrast_id": "1",
+      "study_id": "23123681",
+      "term": "terms_abstract_tfidf__ventromedial prefrontal",
+      "weight": 0.184248544457
+    }
+  ],
+  "dialect": "postgresql",
+  "ok": true,
+  "version": "PostgreSQL 17.6 (Debian 17.6-1.pgdg12+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 12.2.0-14+deb12u1) 12.2.0, 64-bit"
+}
+]
